@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang = "ko">
     <head>
@@ -7,6 +9,61 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script>
+        var imgs =[];
+        var slider;
+        var imgAtual;
+        var maxImg;
+        var tmp;
+        var tempoTroca;
+
+        function preCarregamento(){
+            imgs[0] = new Image();
+          imgs[0].src = "/static/s1.jpg";
+         
+          imgs[1] = new Image();
+          imgs[1].src = "/static/s2.jpg";
+
+          imgs[2] = new Image();
+          imgs[2].src = "/static/s3.jpg";
+        }
+
+
+
+        function inicia(){
+            preCarregamento();
+            imgAtual = 0;
+            maxImg = imgs.length-1;
+            slider = document.getElementById("dvslider");
+            slider.style.backgroundImage = "url('" + imgs[imgAtual].src + "')";
+            tempoTroca = 1000;
+            tmp = setInterval(troca, tempoTroca);
+        }
+
+        function troca(){
+            imgAtual++;
+            if(imgAtual > maxImg){
+                imgAtual = 0;
+            }
+            slider.style.backgroundImage = "url('" + imgs[imgAtual].src + "')";
+        }
+
+        window.addEventListener("load", inicia);
+    </script>
+
+
+       
+
+        <script type = "text/javascript">
+            function change(color)
+            {
+              document.body.style.background = color;
+            }
+          </script>
         <style>
            @font-face { font-family: 'netmarbleB'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff'); font-weight: normal; font-style: normal; }
            @font-face { font-family: 'UhBeeMiMi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeMiMi.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -21,11 +78,36 @@
         button {
             font-family : 'UhBeeMiMi';
         }
+
+        #dvslider{
+				width : 800px;
+				height : 300px;
+				border : 1px solid #000;
+				position : absolute;
+				position : fixed;
+				top : 200px;
+				left : 335px;
+
+			}
         </style>
     </head>
     <body>
+            <div class="container">
+                    <div class="dropdown">
+                      <button class="btn btn-warning dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">배경색 변경
+                      <span class="caret"></span></button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li role="presentation" name = "color" onclick = "change('#FAED7D')"><a role="menuitem" tabindex="-1" href="#">노랑색</a></li>
+                        <li role="presentation" name = "color" onclick = "change('#FFC19E')"><a role="menuitem" tabindex="-1" href="#">주황색</a></li>
+                        <li role="presentation" name = "color" onclick = "change('#B2EBF4')" ><a role="menuitem" tabindex="-1" href="#">하늘색</a></li>
+                        <li role="presentation" name = "color" onclick = "change('#D1B2FF')"><a role="menuitem" tabindex="-1" href="#">보라색</a></li>
+                        <li role="presentation" name = "color" onclick = "change('#FFD9EC')"><a role="menuitem" tabindex="-1" href="#">분홍색</a></li>
+                      </ul>
+                    </div>
+                  </div>
         <h1>RIHYUN's BLOG</h1>
-        <br><br>
+        <div id = "dvslider"></div>
+        <br><br><br> <br><br><br> <br><br><br> <br><br><br> <br><br><br><br><br><br> <br><br><br>
         <div class="text-center"> 
         <a href = "{% url 'home' %}"><button type="button" class="btn btn-outline-info btn-lg">글 보러가기</button></a><br>
         </div>
