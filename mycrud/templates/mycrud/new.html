@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset = "utf-8">
+        <title>CRUD</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <style>
+        @font-face { font-family: 'UhBeeMiMi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeMiMi.woff') format('woff'); font-weight: normal; font-style: normal; }
+        
+        button {
+            font-family : 'UhBeeMiMi';
+        }
+        </style>
+    </head>
+    <body>
+        <form method = 'POST'>
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <br>
+            <a href = "{% url 'newblog' %}"><button type="submit" class="btn btn-outline-info">제출하기</button></a>
+
+        </form>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset = "utf-8">
+        <title>CRUD</title>
+     
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <style>
+           @font-face { font-family: 'netmarbleB'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff'); font-weight: normal; font-style: normal; }
+           @font-face { font-family: 'UhBeeMiMi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeMiMi.woff') format('woff'); font-weight: normal; font-style: normal; }
+        h1 {
+            text-align : center;
+            font-family : 'netmarbleB';
+            color : white;
+            background-color: navy;
+
+        }
+        
+        button {
+            font-family : 'UhBeeMiMi';
+        }
+        </style>
+    </head>
+    <body>
+        <h1>RIHYUN's BLOG</h1>
+        <br><br>
+        <div class="text-center"> 
+        <a href = "{% url 'home' %}"><button type="button" class="btn btn-outline-info btn-lg">글 보러가기</button></a><br>
+        </div>
+    </body>
+</html>
