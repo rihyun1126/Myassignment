@@ -3,32 +3,40 @@
     <head>
         <meta charset ="utf-8">
         <title>CRUD</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <style>
         @font-face { font-family: 'UhBeeMiMi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeMiMi.woff') format('woff'); font-weight: normal; font-style: normal; }
         
-        button {
+
+        body {
             font-family : 'UhBeeMiMi';
         }
         
         </style>
     </head>
     <body>
-       <div class = "text-right"> <a href = "{% url 'newblog' %}"><button type="button" class="btn btn-outline-info btn-lg">글쓰기</button></a></div>
+        <div class = "text-right"> 
+         <a href = "{% url 'newblog' %}"><button type="button" class="btn btn-outline-info btn-lg">글쓰기</button></a></div>
+       <div class = "card, w-50 p-3">
        
         {% for blog in blogs %}
+        <div class = "card-header bg-info text-white">
             <h2>{{blog.title}}</h2>
+            </div>
+            <div class = "card-body bg-light">
             <h5>{{blog.pub_date}}</h5>
             <p>{{blog.body}}</p>
-    
-        </div>
+            <a class = "btn btn-lg btn-primary" href = "{% url 'detail' blog.id %}" role = "button">댓글보기</a>
 
             <a href  = "{% url 'update' blog.id %}"><button type="button" class="btn btn-outline-info">수정</button></a>
             <a href = "{% url 'delete' blog.id %}"><button type="button" class="btn btn-outline-info">삭제</button></a>
 
-            <hr>
+            </div>
+            </div>
         {% endfor %}
     </body>
 </html>

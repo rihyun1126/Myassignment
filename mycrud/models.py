@@ -1,6 +1,8 @@
 from django.db import models
-
+from django.utils import timezone
+from django.conf import settings
 # Create your models here.
+
 
 class Blog(models.Model):
     title = models.CharField(max_length = 100)
@@ -9,3 +11,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+ 
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True, related_name='comments')
+    comment_user = models.CharField(max_length=200, null=True)
+    comment_date = models.DateTimeField(auto_now_add=True, null=True)
+    comment_textfield = models.TextField()

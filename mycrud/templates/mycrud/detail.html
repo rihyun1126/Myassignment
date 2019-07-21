@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset ="utf-8">
+        <title>CRUD</title>
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <style>
+        @font-face { font-family: 'UhBeeMiMi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeMiMi.woff') format('woff'); font-weight: normal; font-style: normal; }
+        
+
+        body {
+            font-family : 'UhBeeMiMi';
+        }
+
+        strong {
+            color : blue;
+        }
+
+        span {
+            margin : 10px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class = "text-right"> 
+         <a href = "{% url 'newblog' %}"><button type="button" class="btn btn-outline-info btn-lg">글쓰기</button></a></div>
+       <div class = "card, w-50 p-3">
+       
+        <div class = "card-header bg-info text-white">
+            <h2>{{blog_detail.title}}</h2>
+            </div>
+            <div class = "card-body bg-light">
+            <h5>{{blog_detail.pub_date}}</h5>
+            <p>{{blog_detail.body}}</p>
+            
+            </div>
+            </div>
+        <hr>
+
+        <div class = "card my-4">
+            <h5 class = "card-header">댓글</h5>
+            <div class = "card-body">
+                <form method = "POST">
+                {% csrf_token %}
+                    <div class = "form-group">{{comment_form.as_p}}</div>
+                    <button type = "submit" class = "btn btn-primary">작성하기</button>
+                </form>
+            </div>
+        </div>    
+         
+        {% for comment in comments %}
+        
+            <div class="media mb-4">
+                <span><div class="media-body">
+                <div class = "comment, text-right">
+                <a href = "{% url 'comment_update' pk=comment.pk %}"><button type="button" class="btn btn-outline-info">수정</button></a>
+                <a href = "{% url 'comment_delete' pk=comment.pk %}"><button type="button" class="btn btn-outline-info">삭제</button></a>
+                   </div> 
+                    <strong><h5 class="mt-0">{{ comment.comment_user }}</h5></strong>
+                    <h5 class="mt-0">{{ comment.comment_date}}</h5>
+                    <h5 class="mt-0">{{ comment.comment_textfield }}</h5>
+                </div>
+                <span>
+            </div>
+ 
+        {% endfor %}
+    </body>
+</html>

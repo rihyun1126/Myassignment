@@ -102,14 +102,31 @@
                         <li role="presentation" name = "color" onclick = "change('#B2EBF4')" ><a role="menuitem" tabindex="-1" href="#">하늘색</a></li>
                         <li role="presentation" name = "color" onclick = "change('#D1B2FF')"><a role="menuitem" tabindex="-1" href="#">보라색</a></li>
                         <li role="presentation" name = "color" onclick = "change('#FFD9EC')"><a role="menuitem" tabindex="-1" href="#">분홍색</a></li>
+                        <li role="presentation" name = "color" onclick = "change('#FFFFFF')"><a role="menuitem" tabindex="-1" href="#">원래대로</a></li>
                       </ul>
                     </div>
+                    </div>
+                    <div class = "text-right">
+
+            {% if user.is_active %}
+              <button type="button" class="btn btn-outline-info btn-lg">{{user.username}}</button>
+              <a href = "{% url 'logout' %}"><button type="button" class="btn btn-outline-info btn-lg">로그아웃</button></a>
+            {% else %}
+              <a href = "{% url 'signup' %}"><button type="button" class="btn btn-outline-info btn-lg">회원가입</button></a>
+              <a href = "{% url 'login' %}"><button type="button" class="btn btn-outline-info btn-lg">로그인</button></a>
+            {% endif %}
                   </div>
         <h1>RIHYUN's BLOG</h1>
         <div id = "dvslider"></div>
         <br><br><br> <br><br><br> <br><br><br> <br><br><br> <br><br><br><br><br><br> <br><br><br>
         <div class="text-center"> 
+
+        {% if user.is_active %}
         <a href = "{% url 'home' %}"><button type="button" class="btn btn-outline-info btn-lg">글 보러가기</button></a><br>
+        {% else %}
+        <button type="button" class="btn btn-outline-info btn-lg" onclick = "alert('로그인하세요.')">글 보러가기</button><br>
+        {% endif %}
+        
         </div>
     </body>
 </html>

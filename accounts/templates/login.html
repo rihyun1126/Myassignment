@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    
+
+    <style>
+        @font-face { font-family: 'UhBeeMiMi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeMiMi.woff') format('woff'); font-weight: normal; font-style: normal; }
+        
+        div {
+            font-family : 'UhBeeMiMi';
+        }
+
+        h1{
+            color : white;
+        }
+
+        .card {
+        margin: 0 auto; 
+        background-color: #B5B2FF;
+        border-style: none;
+        float: none; 
+        margin-bottom: 10px; 
+}
+
+        </style>
+</head>
+<body><p><br><br><br></p>
+<div class = "container">
+<div class = "card w-50 p-3 text-white">
+<div class = "text-center">
+    <h1>로그인 >></h1><br><br>
+    <form method = "POST" action = "{% url 'login' %}">
+    {% csrf_token %}
+    아이디 :
+    <input name = "username" type = "text">
+    <br><br>
+    비밀번호 :
+    <input name = "password" type = "password">
+    <br><br>
+    <button type = "submit" class="btn btn-light" >확인</button>
+    </form>
+    </div>
+    </div>
+</div>
+</body>
+</html>

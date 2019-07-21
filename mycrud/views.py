@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from .models import Blog
-from .forms import NewBlog
+from .models import Blog, Comment
+from .forms import NewBlog, BlogCommentForm
+from django.http import HttpResponseRedirect
+from django import forms
 
 def first(request):
     return render(request, 'mycrud/index.html')
@@ -43,3 +45,39 @@ def delete(request, pk):
     blog = get_object_or_404(Blog, pk = pk)
     blog.delete()
     return redirect('home')
+
+def detail(request, blog_id):
+    blog_detail = get_object_or_404(Blog, pk = blog_id)
+    comments = Comment.objects.filter(blog_id=blog_id)
+
+    if request.method == 'POST':
+        comment_form = BlogCommentForm(request.POST)
+        comment_form.instance.blog_id = blog_id
+        if comment_form.is_valid():
+            comment_form.save()
+  
+    else :
+        comment_form = BlogCommentForm()
+
+    context = {
+            'blog_detail' : blog_detail,
+            'comments': comments,
+            'comment_form': comment_form
+            
+    }
+    return render(request, 'mycrud/detail.html', context)
+
+def comment_delete(request, pk) :
+    comment = get_object_or_404(Comment, pk = pk)
+    comment.delete()
+    return redirect('first')
+
+def comment_update(request, pk):
+    comment = get_object_or_404(Comment, pk = pk)
+    form = BlogCommentForm(request.POST, instance = comment)
+
+    if form.is_valid():
+        form.save()
+        return redirect('first')
+
+    return render(request, 'mycrud/comment.html', {'form' : form})

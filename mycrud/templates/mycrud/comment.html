@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset ="utf-8">
+        <title>CRUD</title>
+    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <style>
+        @font-face { font-family: 'UhBeeMiMi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeMiMi.woff') format('woff'); font-weight: normal; font-style: normal; }
+        
+
+        body {
+            font-family : 'UhBeeMiMi';
+        }
+    </style>
+    </head>
+<body>
+<div class = "card my-4">
+            <h5 class = "card-header">댓글</h5>
+            <div class = "card-body">
+                <form method = "POST">
+                {% csrf_token %}
+                    <div class = "form-group">{{comment_form.as_p}}</div>
+                    <div class = "comment">
+                    <button type = "submit" class = "btn btn-primary">수정하기</button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+        </body>
+        </html>
