@@ -21,7 +21,7 @@ def create(request):
             post = form.save(commit = False)
             post.pub_date = timezone.now()
             post.save()
-            return redirect('home')
+            return redirect('showblog')
 
     # 글쓰기 페이지를 띄워주는 역할 == GET 형식(!POST)
     else:
@@ -37,14 +37,14 @@ def update(request, pk):
 
     if form.is_valid():
         form.save()
-        return redirect('home')
+        return redirect('showblog')
 
     return render(request, 'mycrud/new.html', {'form' : form})
 
 def delete(request, pk):
     blog = get_object_or_404(Blog, pk = pk)
     blog.delete()
-    return redirect('home')
+    return redirect('showblog')
 
 def detail(request, blog_id):
     blog_detail = get_object_or_404(Blog, pk = blog_id)
@@ -67,17 +67,21 @@ def detail(request, blog_id):
     }
     return render(request, 'mycrud/detail.html', context)
 
-def comment_delete(request, pk) :
-    comment = get_object_or_404(Comment, pk = pk)
+def comment_delete(request, comment_id) :
+    comment = get_object_or_404(Comment, pk = comment_id)
     comment.delete()
-    return redirect('first')
+    return redirect('showblog')
 
-def comment_update(request, pk):
-    comment = get_object_or_404(Comment, pk = pk)
-    form = BlogCommentForm(request.POST, instance = comment)
+def comment_update(request, comment_id):
+    comment = get_object_or_404(Comment, pk = comment_id)
+    comment_form = BlogCommentForm(request.POST, instance = comment)
 
-    if form.is_valid():
-        form.save()
-        return redirect('first')
+    if request.method == "POST" :
+        comment_form = BlogCommentForm(request.POST, instance = comment)
+        if comment_form.is_valid():
+            comment_form.save()
+            return redirect('showblog')
+    else :
+        form = BlogCommentForm(instance = comment)
 
-    return render(request, 'mycrud/comment.html', {'form' : form})
+    return render(request, 'mycrud/comment.html', {'comment_form' : comment_form})

@@ -71,7 +71,7 @@
             text-align : center;
             font-family : 'netmarbleB';
             color : white;
-            background-color: navy;
+            background-color : navy;
 
         }
         
@@ -89,9 +89,12 @@
 				left : 335px;
 
 			}
+
+     
         </style>
     </head>
     <body>
+       
             <div class="container">
                     <div class="dropdown">
                       <button class="btn btn-warning dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">배경색 변경
@@ -116,13 +119,16 @@
               <a href = "{% url 'login' %}"><button type="button" class="btn btn-outline-info btn-lg">로그인</button></a>
             {% endif %}
                   </div>
+       
         <h1>RIHYUN's BLOG</h1>
         <div id = "dvslider"></div>
         <br><br><br> <br><br><br> <br><br><br> <br><br><br> <br><br><br><br><br><br> <br><br><br>
         <div class="text-center"> 
+        
+
 
         {% if user.is_active %}
-        <a href = "{% url 'home' %}"><button type="button" class="btn btn-outline-info btn-lg">글 보러가기</button></a><br>
+        <a href = "{% url 'showblog' %}"><button type="button" class="btn btn-outline-info btn-lg">글 보러가기</button></a><br>
         {% else %}
         <button type="button" class="btn btn-outline-info btn-lg" onclick = "alert('로그인하세요.')">글 보러가기</button><br>
         {% endif %}

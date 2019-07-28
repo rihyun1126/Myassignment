@@ -20,10 +20,12 @@
     </head>
     <body>
         <div class = "text-right"> 
+         <button type="button" class="btn btn-outline-info btn-lg">{{user.username}}</button>
+              <a href = "{% url 'logout' %}"><button type="button" class="btn btn-outline-info btn-lg">로그아웃</button></a>
          <a href = "{% url 'newblog' %}"><button type="button" class="btn btn-outline-info btn-lg">글쓰기</button></a></div>
-       <div class = "card, w-50 p-3">
-       
+    
         {% for blog in blogs %}
+        <div class = "card, w-50 p-3">
         <div class = "card-header bg-info text-white">
             <h2>{{blog.title}}</h2>
             </div>
